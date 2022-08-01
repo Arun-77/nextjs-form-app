@@ -1,10 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { Box, Button, Flex } from '@chakra-ui/react';
 import { MyTextInput, MyTextarea } from './CustomInput';
 import { jobFormSchema } from './validationSchema';
-
 import { OverallContext } from './context/overallContext';
+import { useFormikContext } from 'formik';
+
+const AutoSubmit = () => {
+	const { values } = useFormikContext();
+	const { setData } = useContext(OverallContext);
+
+	useEffect(() => {
+		if (values.job_title) {
+			console.log(values);
+			setData((prev) => ({ ...prev, ...values }));
+		}
+	}, [setData, values]);
+
+	return null;
+};
 
 const JobForm = (props) => {
 	const { setPageValid } = useContext(OverallContext);
@@ -31,7 +45,7 @@ const JobForm = (props) => {
 						/>
 
 						<MyTextInput label="Job location" name="job_location" type="text" />
-
+						<AutoSubmit />
 						<Flex pt="56" justify="flex-end">
 							<Button
 								px="14"

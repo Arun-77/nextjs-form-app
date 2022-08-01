@@ -12,7 +12,7 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<Box pt="8" px="28" h="100vh" pb="28">
+			<Box pt="8" px="28" h="100%" pb="28">
 				<Heading as="h1" fontSize="2rem" mb="4">
 					Create Candidate Requisition
 				</Heading>

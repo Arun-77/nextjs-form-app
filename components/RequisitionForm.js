@@ -1,10 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { Box, Button, Flex } from '@chakra-ui/react';
 import { MyTextInput, MySelect } from './CustomInput';
 import { requisitionSchema } from './validationSchema';
-
 import { OverallContext } from './context/overallContext';
+import { useFormikContext } from 'formik';
+
+const AutoSubmit = () => {
+	const { values } = useFormikContext();
+	const { setData } = useContext(OverallContext);
+
+	useEffect(() => {
+		if (values.req_title) {
+			console.log(values);
+			setData((prev) => ({ ...prev, ...values }));
+		}
+	}, [setData, values]);
+
+	return null;
+};
 
 const RequisitionForm = (props) => {
 	const { setPageValid } = useContext(OverallContext);
@@ -21,9 +35,9 @@ const RequisitionForm = (props) => {
 				validationSchema={requisitionSchema}
 				onSubmit={handleSubmit}
 			>
-				{(props) => (
+				{({ values }) => (
 					<Form>
-						<Box overflowY="scroll" maxHeight="435px">
+						<Box>
 							<MyTextInput label="Request Title" name="req_title" type="text" />
 							<MyTextInput
 								label="Owner"
@@ -66,8 +80,13 @@ const RequisitionForm = (props) => {
 								<option value="Inactive">Inactive</option>
 								<option value="Active">Active</option>
 							</MySelect>
+							<AutoSubmit />
 						</Box>
-						<Flex justify="flex-end" pt="10">
+						<Flex
+							justify="flex-end"
+							py="10"
+							// changed pt to py
+						>
 							<Button
 								isDisabled
 								px="14"

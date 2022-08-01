@@ -17,26 +17,11 @@ const FormContainer = () => {
 		prevHandler,
 	} = useContext(OverallContext);
 
-	const tabBar = ['Requisition Details', 'Job Details', 'Interview Settings'];
-
 	const forms = [
 		<RequisitionForm key={0} next={nextHandler} data={data} />,
 		<JobForm key={1} next={nextHandler} prev={prevHandler} data={data} />,
 		<InterviewForm key={2} prev={prevHandler} next={nextHandler} data={data} />,
 	];
-
-	const activeTab = (index) => {
-		if (currentStep === index) {
-			return {
-				_active: {
-					color: '#333',
-					borderBottom: '3px solid primary',
-				},
-			};
-		} else {
-			return null;
-		}
-	};
 
 	return (
 		<Box h="100%">
@@ -49,24 +34,18 @@ const FormContainer = () => {
 				<Text
 					cursor="pointer"
 					fontSize="1.2rem"
+					pb="2"
+					px="6"
 					_hover={{
 						color: '#333',
-						fontWeight: 600,
+						fontWeight: 800,
 						borderBottom: '3px solid',
 						borderBottomColor: 'primary',
 					}}
-					_active={
-						currentStep === 0
-							? {
-									color: '#333',
-									borderBottom: '3px solid',
-									borderBottomColor: 'primary',
-							  }
-							: { color: '#999', borderBottom: '3px solid white' }
-					}
-					px="6"
-					py="2"
-					borderBottom="3px solid white"
+					fontWeight={currentStep === 0 ? 800 : 400}
+					color={currentStep === 0 ? '#333' : 'inherit'}
+					borderBottom={currentStep === 0 ? '3px solid' : '3px solid'}
+					borderBottomColor={currentStep === 0 ? 'primary' : 'white'}
 					onClick={() => {
 						if (pageValid) {
 							setCurrentStep(0);
@@ -79,25 +58,19 @@ const FormContainer = () => {
 				</Text>
 				<Text
 					px="6"
-					py="2"
+					pb="2"
 					fontSize="1.2rem"
 					cursor="pointer"
 					_hover={{
 						color: '#333',
-						fontWeight: 600,
+						fontWeight: 800,
 						borderBottom: '3px solid',
 						borderBottomColor: 'primary',
 					}}
-					_active={
-						currentStep === 1
-							? {
-									color: '#333',
-									borderBottom: '3px solid',
-									borderBottomColor: 'primary',
-							  }
-							: { color: '#999', borderBottom: '3px solid white' }
-					}
-					borderBottom="3px solid white"
+					fontWeight={currentStep === 0 ? 800 : 400}
+					color={currentStep === 1 ? '#333' : 'inherit'}
+					borderBottom={currentStep === 1 ? '3px solid' : '3px solid'}
+					borderBottomColor={currentStep === 1 ? 'primary' : 'white'}
 					onClick={() => {
 						if (pageValid) {
 							setCurrentStep(1);
@@ -110,26 +83,19 @@ const FormContainer = () => {
 				</Text>
 				<Text
 					px="6"
-					py="2"
+					pb="2"
 					fontSize="1.2rem"
 					cursor="pointer"
 					_hover={{
 						color: '#333',
-						fontWeight: 600,
+						fontWeight: 800,
 						borderBottom: '3px solid',
 						borderBottomColor: 'primary',
 					}}
-					_active={
-						currentStep === 2
-							? {
-									color: '#333',
-									fontWeight: 600,
-									borderBottom: '3px solid',
-									borderBottomColor: 'primary',
-							  }
-							: { color: '#999', borderBottom: '3px solid white' }
-					}
-					borderBottom="3px solid white"
+					fontWeight={currentStep === 0 ? 800 : 400}
+					color={currentStep === 2 ? '#333' : 'inherit'}
+					borderBottom={currentStep === 2 ? '3px solid' : '3px solid'}
+					borderBottomColor={currentStep === 2 ? 'primary' : 'white'}
 					onClick={() => {
 						if (pageValid) {
 							setCurrentStep(2);
@@ -142,10 +108,7 @@ const FormContainer = () => {
 				</Text>
 			</Flex>
 			<Flex justify="space-between" h="100%" pt="2">
-				<Box w="60%" mt="5" h="100%">
-					{/* <Box>{currentStep === 0 ? <RequisitionForm /> : null}</Box>
-					<Box>{currentStep === 1 ? <JobForm /> : null}</Box>
-					<Box>{currentStep === 2 ? <InterviewForm /> : null}</Box> */}
+				<Box w="60%" mt="2" h="100%">
 					{forms[currentStep]}
 				</Box>
 				<PreviewCard data={data} />

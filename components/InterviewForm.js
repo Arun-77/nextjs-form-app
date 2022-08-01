@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { Box, Button, Flex } from '@chakra-ui/react';
 import { MyTextInput } from './CustomInput';
 import { interviewSchema } from './validationSchema';
+import { OverallContext } from './context/overallContext';
+import { useFormikContext } from 'formik';
+
+const AutoSubmit = () => {
+	const { values } = useFormikContext();
+	const { setData } = useContext(OverallContext);
+
+	useEffect(() => {
+		if (values.inter_mode) {
+			console.log(values);
+			setData((prev) => ({ ...prev, ...values }));
+		}
+	}, [setData, values]);
+
+	return null;
+};
 
 const InterviewForm = (props) => {
 	const handleSubmit = (values) => {
@@ -37,7 +53,7 @@ const InterviewForm = (props) => {
 							type="text"
 							placeholder="Please enter any required languages"
 						/>
-
+						<AutoSubmit />
 						<Flex pt="64" justify="flex-end">
 							<Button
 								px="14"

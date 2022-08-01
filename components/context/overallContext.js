@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 
 export const OverallContext = createContext({
 	data: {},
+	setData: () => {},
 	currentStep: 0,
 	setCurrentStep: () => {},
 	prevHandler: () => {},
@@ -71,6 +72,7 @@ export function OverallContextProvider({ children }) {
 		<OverallContext.Provider
 			value={{
 				data: data,
+				setData: setData,
 				pageValid: pageValid,
 				setPageValid: setPageValid,
 				currentStep: currentStep,

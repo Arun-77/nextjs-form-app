@@ -12,7 +12,11 @@ export const MyTextInput = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
 
 	return (
-		<FormControl isInvalid={!!meta.error && meta.touched}>
+		<FormControl
+			isInvalid={!!meta.error && meta.touched}
+			minHeight="102px"
+			pt="0.5"
+		>
 			<FormLabel color="labelColor" htmlFor={props.name}>
 				{label}
 			</FormLabel>
@@ -28,7 +32,7 @@ export const MySelect = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
 
 	return (
-		<FormControl isInvalid={!!meta.error && meta.touched}>
+		<FormControl isInvalid={!!meta.error && meta.touched} minHeight="99px">
 			<FormLabel color="labelColor" htmlFor={props.name}>
 				{label}
 			</FormLabel>
@@ -44,7 +48,7 @@ export const MyTextarea = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
 
 	return (
-		<FormControl isInvalid={!!meta.error && meta.touched}>
+		<FormControl isInvalid={!!meta.error && meta.touched} minHeight="170px">
 			<FormLabel color="labelColor" htmlFor={props.name}>
 				{label}
 			</FormLabel>
