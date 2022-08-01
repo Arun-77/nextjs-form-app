@@ -48,7 +48,7 @@ export const MyTextarea = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
 
 	return (
-		<FormControl isInvalid={!!meta.error && meta.touched} minHeight="170px">
+		<FormControl isInvalid={!!meta.error && meta.touched} minHeight="165px">
 			<FormLabel color="labelColor" htmlFor={props.name}>
 				{label}
 			</FormLabel>

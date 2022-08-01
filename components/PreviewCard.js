@@ -2,8 +2,6 @@ import React from 'react';
 import { Box, Heading, Text, Flex } from '@chakra-ui/react';
 
 const PreviewCard = ({ data }) => {
-	console.log(data);
-
 	return (
 		<Box
 			w="40%"
@@ -50,7 +48,7 @@ const PreviewCard = ({ data }) => {
 						</Flex>
 					) : null}
 
-					{data.req_title !== '' ? (
+					{Object.values(data).some((datum) => datum !== '') ? (
 						<>
 							<Heading as="h4" fontSize="1.2rem" mt="5">
 								REQUISITION DETAILS
@@ -68,7 +66,7 @@ const PreviewCard = ({ data }) => {
 											REQ. TITLE
 										</Text>
 										<Text fontWeight={600} letterSpacing="1.5px">
-											{data.req_title}
+											{data.req_title.length !== 0 ? data.req_title : null}
 										</Text>
 									</Box>
 								) : null}

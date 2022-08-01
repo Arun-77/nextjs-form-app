@@ -11,10 +11,7 @@ const AutoSubmit = () => {
 	const { setData } = useContext(OverallContext);
 
 	useEffect(() => {
-		if (values.job_title) {
-			console.log(values);
-			setData((prev) => ({ ...prev, ...values }));
-		}
+		setData((prev) => ({ ...prev, ...values }));
 	}, [setData, values]);
 
 	return null;
